@@ -28,6 +28,7 @@ class TestUser(HttpUser):
       'x-dynatrace-test': generateXDynatraceTestHeader('Test Root'),
     }
     with self.client.get('/', catch_response=True) as response:
+      #print(response)
       if (response.status_code == 0):
         self.number_invalid_status_codes += 1
         print('Ignoring invalid status code "0"')
@@ -39,6 +40,7 @@ class TestUser(HttpUser):
       'x-dynatrace-test': generateXDynatraceTestHeader('Test API'),
     }
     with self.client.post('/create-user', json={"name":"john", "lastName":"Doe", "email":"demo@dynatrace.com"}, catch_response=True) as response:
+      #print(response)
       if (response.status_code == 0):
         self.number_invalid_status_codes += 1
         print('Ignoring invalid status code "0"')
