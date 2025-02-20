@@ -27,6 +27,7 @@ echo $DYNATRACE_TOKEN | docker login $DYNATRACE_ENVIRONMENT_URL -u $DYNATRACE_EN
 sed -i "s|DTenvironmentURL|$DYNATRACE_ENVIRONMENT_URL|g" ./Dockerfile
 docker build -t dynatrace-nodejs-demo:latest .
 docker run --name production-dt-nodejs-demo -p 3000:3000 dynatrace-nodejs-demo:latest
+#Load generation is still WIP
 docker run --name load-generator -p 8089:8089 -e LOCUST_LOAD_TEST_NAME=demoLoad -v $PWD/load-test:/mnt/locust locustio/locust -f /mnt/locust/locustfile.py --config /mnt/locust/locust.conf
 ```
 
